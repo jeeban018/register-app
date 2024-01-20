@@ -27,15 +27,18 @@ pipeline {
 	    stage("Test Application"){
                 steps {
                     sh "mvn test"
-           }
-       }
-	    stage("SonarQube Analysis"){
-                steps {
-			withSonarQubeEnv(sonaqube-server') {
-	           script { 
-                        sh "mvn sonar:sonar"
 		   }
-	       }	
+	       }
+
+	    stage("Sonar Analysis"){
+		    steps{
+		       scripts{
+			   withSonarQubeEnv(sonaqube-server'){
+			   sh "mvn sonar:sonar		    
+			   } 
+   
+		       }	    
+		    }
+	    }
            }
        }
-    }
