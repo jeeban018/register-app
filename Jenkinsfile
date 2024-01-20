@@ -34,7 +34,7 @@ pipeline {
 		    steps{
 		       scripts{
 			   withSonarQubeEnv('sonaqube-server'){
-			   sh "mvn sonar:sonar		    
+			   sh "mvn sonar:sonar"		    
 			   } 
    
 		       }	    
