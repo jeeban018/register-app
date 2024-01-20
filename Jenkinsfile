@@ -1,4 +1,4 @@
-pipeline {
+pipeline{
     agent { label 'Jenkins-Agent' }
     tools {
         jdk 'Java17'
@@ -29,16 +29,14 @@ pipeline {
                     sh "mvn test"
 		   }
 	       }
-
-	    stage("Sonar Analysis"){
-		    steps{
-		       scripts{ withSonarQubeEnv('sonaqube-server') {
-			   sh "mvn sonar:sonar"		    
-		      } 
-   
-		  }	    
-	       }
-	    }
-         }
+	    stage("SonarQube Analysis"){
+               steps {
+	           script {
+		        withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') { 
+                        sh "mvn sonar:sonar"
+	           }
+	       }	
+           }
+       }
+    }
 }
-       
