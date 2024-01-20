@@ -32,9 +32,6 @@ pipeline {
 
 	    stage("Sonar Analysis"){
 		    steps{
-			    environment {
-             scannerHome = tool 'sonarqube-scanner'
-          }
 		       scripts{ withSonarQubeEnv('sonaqube-server') {
 			   sh "mvn sonar:sonar"		    
 		      } 
