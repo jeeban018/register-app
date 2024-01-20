@@ -25,16 +25,16 @@ pipeline {
 
        }
 	    stage("Test Application"){
-           steps {
-                 sh "mvn test"
+                steps {
+                    sh "mvn test"
            }
        }
 	    stage("SonarQube Analysis"){
-           steps {
+                steps {
 	           script { 
                         sh "mvn sonar:sonar"
-		        }
-	           }	
+		   }
+	       }	
            }
        }
     }
