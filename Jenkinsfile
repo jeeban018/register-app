@@ -32,7 +32,10 @@ pipeline {
 
 	    stage("Sonar Analysis"){
 		    steps{
-		       scripts{
+			    environment {
+             scannerHome = tool 'sonarqube-scanner'
+          }
+		       scripts{ withSonarQubeEnv('sonaqube-server') {
 			   sh "mvn sonar:sonar"		    
 		      } 
    
@@ -40,4 +43,5 @@ pipeline {
 	       }
 	    }
          }
+}
        
